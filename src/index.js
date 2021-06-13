@@ -7,7 +7,7 @@ const server = Hapi.server({
 
 server.route({
   method: 'GET',
-  path: '/',
+  path: '/test',
   handler: (request, h) => {
     return 'Hello world'
   },
@@ -19,6 +19,13 @@ const init = async () => {
     options: {
       prettyPrint: true,
       logEvents: ['response', 'onPostStart'],
+    },
+  })
+
+  await server.register({
+    plugin: require('hapi-ending'),
+    options: {
+      enabled: true,
     },
   })
 
